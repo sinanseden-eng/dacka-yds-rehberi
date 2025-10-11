@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YDS Sınavı Bilgilendirme Rehberi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --light-blue: #3b82f6;
+            --bright-yellow: #fbbf24;
+            --sunny-yellow: #f59e0b;
+            --pure-white: #ffffff;
+            --light-yellow: #fef3c7;
+            --sky-blue: #dbeafe;
+            --navy-blue: #1e40af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--pure-white) 50%, var(--light-yellow) 100%);
+            min-height: 100vh;
+            color: #1f2937;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+            color: var(--pure-white);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent.70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        header h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            background: var(--pure-white);
+            margin: 25px 0;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--bright-yellow) 0%, var(--primary-blue) 50%, var(--bright-yellow) 100%);
+            border-radius: 20px 20px 0 0;
+        }
+
+        h2 {
+            color: var(--navy-blue);
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            padding-left: 0;
+        }
+        
+        h2 svg {
+            margin-right: 15px;
+            height: 36px;
+            width: 36px;
+            fill: var(--navy-blue);
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, var(--pure-white) 0%, var(--sky-blue) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--bright-yellow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+            border-color: var(--primary-blue);
+        }
+
+        .card h3 {
+            color: var(--navy-blue);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--navy-blue) 100%);
+            color: var(--pure-white);
+            border-radius: 20px;
+            border: 4px solid var(--bright-yellow);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-box .number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            display: block;
+            color: var(--bright-yellow);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stat-box .label {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        .question-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .question-grid > div {
+            background: linear-gradient(135deg, var(--pure-white) 0%, var(--light-yellow) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--primary-blue);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
+        }
+        
+        .question-grid h4 {
+            color: var(--navy-blue);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            background: var(--bright-yellow);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .question-grid ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .question-grid li {
+            padding: 12px 5px;
+            border-bottom: 2px solid var(--sky-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .question-grid li:hover {
+            background: var(--sky-blue);
+            padding-left: 10px;
+            border-radius: 8px;
+        }
+        
+        .question-grid li:last-child {
+            border-bottom: none;
+        }
+        
+        .question-grid .type {
+            font-weight: 600;
+            color: var(--navy-blue);
+        }
+        
+        .question-grid .count {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--sky-blue);
+        }
+        
+        tr:hover {
+            background-color: var(--light-yellow);
+        }
+
+        table, th, td {
+             border-radius: 15px;
+        }
+        
+        .score-target-box {
+            background: linear-gradient(135deg, var(--light-yellow) 0%, var(--pure-white) 100%);
+            border: 2px solid var(--bright-yellow);
+            border-left: 8px solid var(--sunny-yellow);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.2);
+        }
+        
+        .score-target-box h4 {
+            color: var(--navy-blue);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .score-target-box ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .score-target-box li {
+            background: var(--pure-white);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--primary-blue);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .score-target-box li:hover {
+            background: var(--primary-blue);
+            color: var(--pure-white);
+            transform: scale(1.05);
+        }
+
+        .disclaimer {
+            font-style: italic;
+            color: #555;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--pure-white) 0%, var(--light-yellow) 100%);
+            border: 2px dashed var(--sunny-yellow);
+            border-radius: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            color: var(--navy-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            section {
+                padding: 25px 20px;
+            }
+            .question-grid, .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>YDS Sınavı Bilgilendirme Rehberi</h1>
+            <p>Akademik ve profesyonel hedeflerinize ulaşmak için YDS'ye dair her şey.</p>
+        </header>
+
+        <section id="nedir">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v2h-2zm0 4h2v6h-2z"/></svg>
+                YDS Nedir?
+            </h2>
+            <p><b>Yabancı Dil Bilgisi Seviye Tespit Sınavı (YDS)</b>, Türkiye'de ÖSYM tarafından düzenlenen, kişilerin yabancı dil yetkinliğini akademik düzeyde ölçen merkezi bir sınavdır. Bu sınav, dil bilgisi, akademik kelime dağarcığı ve okuduğunu anlama becerilerini test eder.</p>
+        </section>
+
+        <section id="onem">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"/></svg>
+                YDS Puanının Stratejik Değeri
+            </h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🎓 Akademik Kariyer</h3>
+                    <p>Yüksek lisans, doktora, doçentlik ve sanatta yeterlik gibi akademik kadrolara başvurularda temel bir ön koşuldur.</p>
+                </div>
+                <div class="card">
+                    <h3>🏢 Kamu Sektörü</h3>
+                    <p>Kamu personelinin dil tazminatı alması ve yurt dışı görevlendirmeleri için gereklidir.</p>
+                </div>
+                <div class="card">
+                    <h3>💼 KPSS A Grubu</h3>
+                    <p>Birçok KPSS-A puan türü, YDS puanının belirli bir ağırlıkla çarpılmasıyla hesaplanır ve sıralamayı doğrudan etkiler.</p>
+                </div>
+                <div class="card">
+                    <h3>🏫 Hazırlık Muafiyeti</h3>
+                    <p>Birçok üniversitede lisans ve lisansüstü programların İngilizce hazırlık sınıfından muaf olmak için kullanılır.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="format">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                Sınavın Anatomisi
+            </h2>
+            <div class="grid">
+                <div class="stat-box">
+                    <span class="number">80</span>
+                    <span class="label">Soru</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">180</span>
+                    <span class="label">Dakika</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">1.25</span>
+                    <span class="label">Puan / Soru</span>
+                </div>
+            </div>
+            <div class="question-grid">
+                <div>
+                    <h4>Bölüm 1: Kelime ve Dil Bilgisi</h4>
+                    <ul>
+                        <li><span class="type">Kelime Bilgisi</span> <span class="count">~6 Soru</span></li>
+                        <li><span class="type">Dil Bilgisi</span> <span class="count">~10 Soru</span></li>
+                        <li><span class="type">Cloze Test</span> <span class="count">10 Soru</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Bölüm 2: Okuduğunu Anlama</h4>
+                    <ul>
+                        <li><span class="type">Cümle Tamamlama</span> <span class="count">10 Soru</span></li>
+                        <li><span class="type">Çeviri</span> <span class="count">6 Soru</span></li>
+                        <li><span class="type">Okuma Parçaları</span> <span class="count">20 Soru</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Bölüm 3: Anlamsal Bütünlük</h4>
+                    <ul>
+                        <li><span class="type">Diyalog Tamamlama</span> <span class="count">5 Soru</span></li>
+                        <li><span class="type">Yakın Anlamlı Cümle</span> <span class="count">4 Soru</span></li>
+                        <li><span class="type">Paragraf Tamamlama</span> <span class="count">4 Soru</span></li>
+                        <li><span class="type">Bütünlüğü Bozan Cümle</span> <span class="count">5 Soru</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="muafiyet">
+            <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Üniversitelerin Hazırlık Muafiyet Şartları
+            </h2>
+            <p>Aşağıdaki tablo, araştırmanıza göre bazı üniversitelerin İngilizce hazırlık sınıfından muafiyet için talep ettikleri YDS/e-YDS puanlarını göstermektedir.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Üniversite</th>
+                        <th>Talep Edilen Minimum Puan</th>
+                        <th>Notlar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>Sabancı Üniversitesi</b></td>
+                        <td>90</td>
+                        <td>Yüksek puan talep eden üniversitelerdendir.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Özyeğin Üniversitesi</b></td>
+                        <td>86</td>
+                        <td>Kendi sınavları (TRACE) yanı sıra YDS de kabul edilmektedir.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Koç Üniversitesi</b></td>
+                        <td>80</td>
+                        <td>Genellikle kendi sınavı (KUEPE) esastır.</td>
+                    </tr>
+                    <tr>
+                        <td><b>İstanbul Üniversitesi</b></td>
+                        <td>70</td>
+                        <td>Fakülte ve bölüme göre değişiklik gösterebilir.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Yeditepe Üniversitesi</b></td>
+                        <td>66</td>
+                        <td>Bölümün eğitim diline göre puan değişebilir.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Hacettepe Üniversitesi</b></td>
+                        <td>65</td>
+                        <td>Tıp ve Diş Hekimliği gibi bölümlerde farklılık gösterebilir.</td>
+                    </tr>
+                    <tr>
+                        <td><b>Yıldız Teknik Üniversitesi</b></td>
+                        <td>60 - 69</td>
+                        <td>İsteğe bağlı ve zorunlu hazırlık programları için farklı barajlar uygulanabilir.</td>
+                    </tr>
+                    <tr>
+                        <td><b>9 Eylül Üniversitesi</b></td>
+                        <td>60</td>
+                        <td>Enstitü ve fakültelerin kendi web siteleri takip edilmelidir.</td>
+                    </tr>
+                    <tr style="background-color: #ffebee;">
+                        <td><b>ODTÜ / Boğaziçi / İTÜ / Marmara / Ankara</b></td>
+                        <td>Kabul Etmiyor</td>
+                        <td>Bu üniversiteler öncelikli olarak kendi yeterlilik sınavlarını (İYS, BUEPT vb.) esas almaktadır.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="score-target-box">
+                <h4>Hedef Puana Göre Gerekli Doğru Sayısı</h4>
+                <p>YDS'de yanlışlar doğruları götürmez. Hedeflediğiniz puana ulaşmak için yapmanız gereken minimum doğru sayısı:</p>
+                <ul>
+                    <li><b>60 PUAN<br>48 DOĞRU</b></li>
+                    <li><b>65 PUAN<br>52 DOĞRU</b></li>
+                    <li><b>70 PUAN<br>56 DOĞRU</b></li>
+                    <li><b>80 PUAN<br>64 DOĞRU</b></li>
+                    <li><b>90 PUAN<br>72 DOĞRU</b></li>
+                </ul>
+            </div>
+
+            <p class="disclaimer"><strong>Önemli Uyarı:</strong> Bu liste yalnızca genel bilgilendirme amaçlıdır. En güncel ve kesin bilgi için lütfen başvurmayı düşündüğünüz üniversitenin Yabancı Diller Yüksekokulu veya Öğrenci İşleri Daire Başkanlığı'nın resmi web sitesini ziyaret ediniz.</p>
+        </section>
+        
+        <section id="takvim">
+             <h2>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
+                2025 YDS Sınav Takvimi (Öngörülen)
+            </h2>
+             <table>
+                <thead>
+                    <tr>
+                        <th>Sınav Adı</th>
+                        <th>Sınav Tarihi</th>
+                        <th>Başvuru Tarihleri</th>
+                        <th>Sonuç Tarihi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><b>2025-YDS/1</b></td>
+                        <td>06.04.2025</td>
+                        <td>19.02 - 26.02.2025</td>
+                        <td>25.04.2025</td>
+                    </tr>
+                     <tr>
+                        <td><b>2025-YDS/2</b></td>
+                        <td>26.10.2025</td>
+                        <td>03.09 - 11.09.2025</td>
+                        <td>14.11.2025</td>
+                    </tr>
+                    <tr>
+                        <td><b>e-YDS (İngilizce)</b></td>
+                        <td>Genellikle her ay</td>
+                        <td>Sınavdan ~2-3 hafta önce</td>
+                        <td>Sınavla aynı gün</td>
+                    </tr>
+                </tbody>
+            </table>
+             <p class="disclaimer">Bu tarihler ÖSYM'nin geçmiş yıllardaki takvimine göre öngörülmüştür. Resmi tarihler için ÖSYM'nin duyurularını takip ediniz.</p>
+        </section>
+
+    </div>
+    <footer>
+        <p>YDS Sınavı Bilgilendirme Rehberi</p>
+    </footer>
+
+</body>
+</html>
