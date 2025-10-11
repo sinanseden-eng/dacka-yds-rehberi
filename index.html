@@ -56,7 +56,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent.70%);
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
             animation: float 6s ease-in-out infinite;
         }
 
@@ -346,6 +346,31 @@
             color: var(--navy-blue);
             font-weight: 600;
         }
+        
+        /* SIGNATURE STYLE */
+        .signature {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--navy-blue));
+            color: var(--pure-white);
+            padding: 12px 22px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-size: 15px;
+            font-weight: 600;
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        .signature strong {
+            color: var(--bright-yellow);
+            font-weight: 700;
+        }
+        .signature:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
 
         @media (max-width: 768px) {
             header h1 {
@@ -359,6 +384,12 @@
             }
             .question-grid, .grid {
                 grid-template-columns: 1fr;
+            }
+            .signature {
+                font-size: 12px;
+                padding: 10px 18px;
+                bottom: 15px;
+                right: 15px;
             }
         }
     </style>
@@ -573,6 +604,11 @@
     <footer>
         <p>YDS Sınavı Bilgilendirme Rehberi</p>
     </footer>
+
+    <!-- SIGNATURE -->
+    <div class="signature">
+        Tasarım: YDS/YDT Öğretmeni <strong>Sinan Seden</strong>
+    </div>
 
 </body>
 </html>
