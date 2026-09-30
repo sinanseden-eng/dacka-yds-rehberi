@@ -1,614 +1,462 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YDS Sınavı Bilgilendirme Rehberi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-blue: #2563eb;
-            --light-blue: #3b82f6;
-            --bright-yellow: #fbbf24;
-            --sunny-yellow: #f59e0b;
-            --pure-white: #ffffff;
-            --light-yellow: #fef3c7;
-            --sky-blue: #dbeafe;
-            --navy-blue: #1e40af;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--pure-white) 50%, var(--light-yellow) 100%);
-            min-height: 100vh;
-            color: #1f2937;
-            line-height: 1.7;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
-            color: var(--pure-white);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        header h1 {
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            position: relative;
-            z-index: 1;
-        }
-
-        header p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
-        }
-
-        section {
-            background: var(--pure-white);
-            margin: 25px 0;
-            padding: 35px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.15);
-        }
-
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, var(--bright-yellow) 0%, var(--primary-blue) 50%, var(--bright-yellow) 100%);
-            border-radius: 20px 20px 0 0;
-        }
-
-        h2 {
-            color: var(--navy-blue);
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            padding-left: 0;
-        }
-        
-        h2 svg {
-            margin-right: 15px;
-            height: 36px;
-            width: 36px;
-            fill: var(--navy-blue);
-        }
-        
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: linear-gradient(135deg, var(--pure-white) 0%, var(--sky-blue) 100%);
-            padding: 25px;
-            border-radius: 15px;
-            border: 2px solid var(--bright-yellow);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
-            border-color: var(--primary-blue);
-        }
-
-        .card h3 {
-            color: var(--navy-blue);
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .card p {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .stat-box {
-            text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--navy-blue) 100%);
-            color: var(--pure-white);
-            border-radius: 20px;
-            border: 4px solid var(--bright-yellow);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .stat-box:hover {
-            transform: scale(1.05);
-        }
-
-        .stat-box .number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            display: block;
-            color: var(--bright-yellow);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .stat-box .label {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-        
-        .question-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .question-grid > div {
-            background: linear-gradient(135deg, var(--pure-white) 0%, var(--light-yellow) 100%);
-            padding: 25px;
-            border-radius: 15px;
-            border: 2px solid var(--primary-blue);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.1);
-        }
-        
-        .question-grid h4 {
-            color: var(--navy-blue);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            padding: 10px 15px;
-            background: var(--bright-yellow);
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .question-grid ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .question-grid li {
-            padding: 12px 5px;
-            border-bottom: 2px solid var(--sky-blue);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .question-grid li:hover {
-            background: var(--sky-blue);
-            padding-left: 10px;
-            border-radius: 8px;
-        }
-        
-        .question-grid li:last-child {
-            border-bottom: none;
-        }
-        
-        .question-grid .type {
-            font-weight: 600;
-            color: var(--navy-blue);
-        }
-        
-        .question-grid .count {
-            background: var(--primary-blue);
-            color: var(--pure-white);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
-            color: white;
-            font-weight: 600;
-        }
-        
-        tr:nth-child(even) {
-            background-color: var(--sky-blue);
-        }
-        
-        tr:hover {
-            background-color: var(--light-yellow);
-        }
-
-        table, th, td {
-             border-radius: 15px;
-        }
-        
-        .score-target-box {
-            background: linear-gradient(135deg, var(--light-yellow) 0%, var(--pure-white) 100%);
-            border: 2px solid var(--bright-yellow);
-            border-left: 8px solid var(--sunny-yellow);
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.2);
-        }
-        
-        .score-target-box h4 {
-            color: var(--navy-blue);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .score-target-box ul {
-            list-style: none;
-            padding: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .score-target-box li {
-            background: var(--pure-white);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid var(--primary-blue);
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .score-target-box li:hover {
-            background: var(--primary-blue);
-            color: var(--pure-white);
-            transform: scale(1.05);
-        }
-
-        .disclaimer {
-            font-style: italic;
-            color: #555;
-            text-align: center;
-            margin-top: 20px;
-            padding: 15px;
-            background: linear-gradient(135deg, var(--pure-white) 0%, var(--light-yellow) 100%);
-            border: 2px dashed var(--sunny-yellow);
-            border-radius: 15px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-            color: var(--navy-blue);
-            font-weight: 600;
-        }
-        
-        /* SIGNATURE STYLE */
-        .signature {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--navy-blue));
-            color: var(--pure-white);
-            padding: 12px 22px;
-            border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            font-size: 15px;
-            font-weight: 600;
-            z-index: 1000;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
-        .signature strong {
-            color: var(--bright-yellow);
-            font-weight: 700;
-        }
-        .signature:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2.5rem;
-            }
-            h2 {
-                font-size: 1.8rem;
-            }
-            section {
-                padding: 25px 20px;
-            }
-            .question-grid, .grid {
-                grid-template-columns: 1fr;
-            }
-            .signature {
-                font-size: 12px;
-                padding: 10px 18px;
-                bottom: 15px;
-                right: 15px;
-            }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10243d">
+  <meta name="description" content="YDS sınav formatını, hedef puan için gereken doğru sayısını ve üniversite muafiyet bilgilerini keşfedin.">
+  <title>YDS Rehberi | Hedefini Belirle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #10243d;
+      --muted: #5d6b7f;
+      --blue: #365bce;
+      --blue-dark: #2448ac;
+      --cyan: #40c1c4;
+      --gold: #ffbf61;
+      --paper: #f6f8fc;
+      --line: #e3e9f2;
+      --white: #fff;
+      --shadow: 0 18px 45px rgba(27, 49, 91, .075);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 "DM Sans", sans-serif; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid #e3a42f; outline-offset: 3px; }
+    .skip { position: absolute; left: 12px; top: -80px; z-index: 20; padding: 10px 16px; border-radius: 10px; background: var(--white); }
+    .skip:focus { top: 12px; }
+    .wrap { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .topbar { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.95); border-bottom: 1px solid var(--line); backdrop-filter: blur(14px); }
+    .top-inner { display: flex; align-items: center; gap: 24px; min-height: 72px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font: 800 16px/1.1 Manrope, sans-serif; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 12px; background: var(--ink); color: var(--white); font-size: 20px; letter-spacing: -.08em; }
+    .brand small { display: block; margin-top: 4px; font: 700 10px/1.1 "DM Sans", sans-serif; letter-spacing: .16em; color: var(--blue); }
+    .nav { display: flex; align-items: center; gap: 23px; margin-left: auto; white-space: nowrap; }
+    .nav a { text-decoration: none; color: #42516a; font-weight: 700; font-size: 13px; }
+    .nav a:hover, .nav a[aria-current="true"] { color: var(--blue); }
+    .print-link { border: 1px solid #d6def0; padding: 9px 15px; border-radius: 10px; background: #f5f7ff; color: var(--blue-dark); font-weight: 800; font-size: 12px; white-space: nowrap; }
+    .print-link:hover { background: #e8edff; }
+    .hero { background: var(--ink); color: var(--white); position: relative; overflow: hidden; }
+    .hero::before { content: ""; position: absolute; width: 850px; height: 850px; border: 1px solid rgba(255,255,255,.09); border-radius: 50%; right: -210px; top: -550px; box-shadow: 0 0 0 90px rgba(255,255,255,.025), 0 0 0 190px rgba(255,255,255,.02); }
+    .hero-inner { display: grid; grid-template-columns: 1.18fr .82fr; gap: 45px; align-items: center; min-height: 390px; padding-block: 66px; position: relative; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #82e1e0; text-transform: uppercase; letter-spacing: .15em; font-size: 11px; font-weight: 800; }
+    .eyebrow::before { content: ""; width: 18px; height: 2px; background: currentColor; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 { font-family: Manrope, sans-serif; letter-spacing: -.045em; }
+    h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.11; margin: 18px 0; max-width: 730px; }
+    h1 em { color: var(--gold); font-style: normal; }
+    .hero p { max-width: 550px; color: #c9d4e6; font-size: 17px; margin-bottom: 28px; }
+    .hero-actions { display: flex; gap: 11px; flex-wrap: wrap; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 45px; padding: 10px 18px; border-radius: 11px; text-decoration: none; font-size: 13px; font-weight: 800; transition: transform .2s ease, background .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--gold); color: #1c2b3d; }
+    .button-secondary { color: white; border: 1px solid #60708a; }
+    .hero-visual { position: relative; display: grid; place-items: center; min-height: 260px; }
+    .orb { width: min(270px, 72vw); aspect-ratio: 1; display: grid; place-items: center; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #5076e9, #2a4fae 62%, #162e68); border: 12px solid rgba(255,255,255,.12); box-shadow: 0 30px 75px rgba(0,0,0,.25), inset 0 0 0 1px rgba(255,255,255,.2); transform: rotate(-9deg); }
+    .orb-inner { text-align: center; transform: rotate(9deg); }
+    .orb-inner span { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .18em; color: #c5d5ff; font-weight: 800; }
+    .orb-inner strong { display: block; font: 800 90px/1 Manrope, sans-serif; letter-spacing: -.09em; color: var(--white); }
+    .orb-inner small { font-size: 13px; color: #e5ecff; }
+    .float-pill { position: absolute; display: flex; gap: 8px; align-items: center; padding: 10px 14px; border-radius: 12px; background: #fff; color: #243855; font-size: 12px; font-weight: 800; box-shadow: 0 15px 35px rgba(0,0,0,.18); }
+    .float-pill b { color: var(--blue); }
+    .float-pill.one { top: 8px; left: -8px; transform: rotate(-5deg); }
+    .float-pill.two { bottom: 15px; right: -2px; transform: rotate(5deg); }
+    main { padding-bottom: 70px; }
+    .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: -27px; position: relative; z-index: 1; }
+    .summary-item { background: white; border: 1px solid var(--line); padding: 18px 22px; border-radius: 16px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px; }
+    .summary-icon { display: grid; place-items: center; flex: 0 0 42px; height: 42px; border-radius: 12px; background: #e8edff; color: var(--blue); font-size: 20px; }
+    .summary-item:nth-child(2) .summary-icon { background: #def7f4; color: #087f81; }
+    .summary-item:nth-child(3) .summary-icon { background: #fff0d9; color: #a66300; }
+    .summary-item strong { display: block; font: 800 23px/1.2 Manrope, sans-serif; }
+    .summary-item span:not(.summary-icon) { font-size: 12px; font-weight: 700; color: var(--muted); }
+    .section { padding-top: 72px; }
+    .section-head { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 25px; }
+    .kicker { color: var(--blue); text-transform: uppercase; letter-spacing: .15em; font-size: 11px; font-weight: 800; margin-bottom: 10px; }
+    h2 { font-size: clamp(27px, 3.2vw, 39px); line-height: 1.22; margin-bottom: 10px; }
+    .section-head p { color: var(--muted); max-width: 640px; margin-bottom: 0; }
+    .section-note { color: #66758a; font-size: 12px; max-width: 330px; }
+    .target-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); gap: 18px; }
+    .panel { background: var(--white); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); }
+    .target-controls { padding: clamp(22px, 3vw, 35px); }
+    .step-label { display: block; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 800; margin-bottom: 15px; }
+    .choice-row { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 24px; }
+    .choice { border: 1px solid #d7e0ec; border-radius: 11px; padding: 9px 15px; background: white; color: #38506e; font-weight: 800; min-width: 61px; }
+    .choice:hover { border-color: var(--blue); }
+    .choice[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); color: white; }
+    .range-labels { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-weight: 700; margin-bottom: 12px; }
+    .range-labels strong { font: 800 29px/1 Manrope, sans-serif; color: var(--blue); white-space: nowrap; }
+    input[type="range"] { width: 100%; accent-color: var(--blue); cursor: pointer; }
+    .range-ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; font-weight: 700; }
+    .divider { border: 0; border-top: 1px solid var(--line); margin: 27px 0; }
+    .current-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+    .current-row label { display: block; font-weight: 800; font-size: 14px; }
+    .current-row small { display: block; color: var(--muted); font-size: 12px; font-weight: 500; }
+    .number-input { width: 115px; border: 1px solid #cbd7e7; border-radius: 11px; padding: 10px 12px; color: var(--ink); font-weight: 800; }
+    .progress-note { min-height: 45px; display: flex; align-items: center; margin: 16px 0 0; font-size: 13px; color: #36536f; background: #f2f6fd; border-radius: 10px; padding: 10px 13px; }
+    .result { padding: 28px; background: linear-gradient(155deg, #284fb9, #153674); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+    .result .step-label { color: #d2defb; margin-bottom: 22px; }
+    .dial { --fill: 252deg; width: 186px; height: 186px; border-radius: 50%; background: conic-gradient(var(--gold) 0 var(--fill), rgba(255,255,255,.2) var(--fill) 360deg); display: grid; place-items: center; margin-bottom: 20px; }
+    .dial-core { width: 148px; height: 148px; border-radius: 50%; background: #2449a2; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .dial-core strong { font: 800 55px/1 Manrope, sans-serif; letter-spacing: -.08em; }
+    .dial-core span { font-size: 12px; color: #dde7ff; font-weight: 800; }
+    .result h3 { font-size: 21px; margin-bottom: 7px; }
+    .result p { font-size: 13px; color: #dae5fc; max-width: 270px; margin-bottom: 0; }
+    .result-foot { display: flex; justify-content: center; gap: 22px; border-top: 1px solid rgba(255,255,255,.22); width: 100%; margin-top: 23px; padding-top: 17px; font-size: 12px; }
+    .result-foot b { color: var(--gold); font-size: 16px; }
+    .info-strip { margin-top: 16px; padding: 15px 20px; border-radius: 12px; color: #536780; font-size: 12px; background: #eaf0fa; }
+    .map-grid { display: grid; grid-template-columns: .74fr 1.26fr; gap: 18px; }
+    .map-intro { padding: 30px; background: #e9f6f5; border-color: #d7ecea; }
+    .map-intro h3 { font-size: 25px; margin-bottom: 10px; }
+    .map-intro p { color: #486773; font-size: 14px; }
+    .stack { display: flex; height: 21px; overflow: hidden; border-radius: 50px; margin: 25px 0 15px; background: #d8e4ee; }
+    .stack span { height: 100%; }
+    .stack span:nth-child(1) { background: var(--blue); width: 32.5%; }
+    .stack span:nth-child(2) { background: #33aeb2; width: 45%; }
+    .stack span:nth-child(3) { background: var(--gold); width: 22.5%; }
+    .legend { display: grid; gap: 9px; }
+    .legend div { display: flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 700; }
+    .legend i { width: 10px; height: 10px; border-radius: 3px; display: block; }
+    .legend b { margin-left: auto; font-size: 14px; }
+    .question-list { padding: 26px 30px; }
+    .question-list h3 { font-size: 20px; margin-bottom: 19px; }
+    .bar-row { display: grid; grid-template-columns: minmax(130px, 1fr) minmax(100px, 1.1fr) 47px; align-items: center; gap: 12px; margin: 9px 0; font-size: 12px; color: #3f5069; font-weight: 700; }
+    .bar-track { background: #edf1f8; height: 9px; border-radius: 20px; overflow: hidden; }
+    .bar-track span { display: block; height: 100%; background: var(--blue); border-radius: inherit; }
+    .bar-row:nth-of-type(3n) .bar-track span { background: #36adb0; }
+    .bar-row:nth-of-type(3n + 1) .bar-track span { background: #e4a844; }
+    .bar-row b { text-align: right; color: var(--ink); }
+    .use-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+    .use-card { padding: 23px; min-height: 190px; }
+    .use-card .glyph { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 10px; background: #e9efff; color: var(--blue); font-weight: 800; font-size: 20px; margin-bottom: 17px; }
+    .use-card:nth-child(2) .glyph { background: #e0f7f5; color: #158f90; }
+    .use-card:nth-child(3) .glyph { background: #fff3e3; color: #a66a16; }
+    .use-card:nth-child(4) .glyph { background: #f0eafb; color: #7657b8; }
+    .use-card h3 { font-size: 17px; margin-bottom: 8px; }
+    .use-card p { color: var(--muted); font-size: 12px; margin: 0; }
+    .table-panel { overflow: hidden; }
+    .table-toolbar { padding: 25px 27px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; border-bottom: 1px solid var(--line); }
+    .table-toolbar h3 { font-size: 20px; margin: 0; }
+    .search { min-width: min(300px, 100%); border: 1px solid #cbd7e7; background: #f8faff; padding: 11px 14px; border-radius: 11px; font-size: 13px; color: var(--ink); }
+    .search::placeholder { color: #78879a; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 650px; font-size: 13px; }
+    th { text-align: left; background: #f4f7fc; color: #5d6e85; font-size: 11px; text-transform: uppercase; letter-spacing: .09em; }
+    th, td { padding: 15px 26px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #f9fbff; }
+    td:first-child { font-weight: 800; }
+    td:nth-child(2) { white-space: nowrap; font-weight: 800; color: var(--blue-dark); }
+    .empty { display: none; text-align: center; padding: 25px; color: var(--muted); font-size: 13px; }
+    .notice { margin-top: 17px; padding: 18px 21px; border-radius: 14px; border: 1px solid #f4d8a4; background: #fff8eb; color: #674d27; font-size: 13px; }
+    .notice strong { color: #463213; }
+    .calendar-card { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; background: var(--ink); color: white; border-radius: 22px; padding: clamp(25px, 4vw, 43px); position: relative; overflow: hidden; }
+    .calendar-card::after { content: "→"; position: absolute; font: 800 260px/1 Manrope, sans-serif; opacity: .04; right: 17%; top: -65px; }
+    .calendar-card h2 { margin: 8px 0; }
+    .calendar-card p { max-width: 620px; margin: 0; color: #c4d3e6; font-size: 14px; }
+    .calendar-card .button { white-space: nowrap; position: relative; z-index: 1; }
+    footer { padding: 35px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+    footer strong { color: var(--ink); }
+    @media (max-width: 950px) {
+      .top-inner { flex-wrap: wrap; gap: 0; padding-top: 10px; }
+      .nav { order: 3; overflow-x: auto; width: 100%; margin: 0; gap: 20px; padding: 10px 0 12px; scrollbar-width: none; }
+      .nav::-webkit-scrollbar { display: none; }
+      .print-link { margin-left: auto; }
+      .hero-inner { grid-template-columns: 1fr .65fr; }
+      .use-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      html { scroll-padding-top: 113px; }
+      .wrap { width: min(100% - 28px, 1160px); }
+      .top-inner { min-height: auto; }
+      .hero-inner { min-height: auto; padding: 55px 0 63px; grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .hero p { font-size: 15px; }
+      .summary { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .summary-item { padding: 13px 9px; display: block; text-align: center; }
+      .summary-icon { width: 31px; height: 31px; margin: 0 auto 8px; font-size: 16px; }
+      .summary-item strong { font-size: 18px; }
+      .summary-item span:not(.summary-icon) { font-size: 10px; }
+      .section { padding-top: 56px; }
+      .section-head { display: block; }
+      .section-note { margin-top: 12px; }
+      .target-grid, .map-grid { grid-template-columns: 1fr; }
+      .result { min-height: 370px; }
+      .bar-row { grid-template-columns: minmax(115px, 1.1fr) minmax(80px, .8fr) 35px; gap: 8px; font-size: 11px; }
+      .question-list { padding: 21px 17px; }
+      .calendar-card { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 440px) {
+      .brand { font-size: 14px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .print-link { padding: 8px 10px; font-size: 11px; }
+      .use-grid { grid-template-columns: 1fr; }
+      .use-card { min-height: auto; }
+      .choice { min-width: 54px; padding: 8px 10px; }
+      .summary-item strong { font-size: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+    @media print {
+      :root { color-scheme: light; }
+      body { background: white; font-size: 11pt; }
+      .topbar, .hero-actions, .choice-row, .range-labels, input, .current-row, .progress-note, .search, .button, .float-pill { display: none !important; }
+      .hero { background: white; color: #10243d; }
+      .hero::before, .calendar-card::after { display: none; }
+      .hero-inner { min-height: auto; padding: 10px 0; display: block; }
+      .hero h1 { font-size: 28pt; }
+      .hero h1 em { color: #10243d; }
+      .hero p { color: #3f5069; }
+      .hero-visual { display: none; }
+      .summary { margin: 15px 0 0; }
+      .summary-item, .panel { box-shadow: none; break-inside: avoid; }
+      .section { padding-top: 28px; break-inside: avoid; }
+      .target-grid, .map-grid { grid-template-columns: 1fr 1fr; }
+      .target-controls { display: none; }
+      .target-grid { display: block; }
+      .result { background: #eaf0ff; color: #10243d; padding: 15px; }
+      .result .step-label, .result p { color: #38506e; }
+      .result-foot { border-color: #b9c6da; }
+      .result-foot b { color: #2448ac; }
+      .dial { width: auto; height: auto; background: none; margin: 0; }
+      .dial-core { width: auto; height: auto; background: none; }
+      .dial-core strong { font-size: 28pt; }
+      .dial-core span { color: #10243d; }
+      .table-wrap { overflow: visible; }
+      table { min-width: 0; }
+      th, td { padding: 7px; }
+      .calendar-card { background: #eaf0ff; color: #10243d; }
+      .calendar-card p { color: #38506e; }
+      .wrap { width: 100%; }
+      footer { padding-bottom: 0; }
+    }
+  </style>
 </head>
 <body>
-
-    <div class="container">
-        <header>
-            <h1>YDS Sınavı Bilgilendirme Rehberi</h1>
-            <p>Akademik ve profesyonel hedeflerinize ulaşmak için YDS'ye dair her şey.</p>
-        </header>
-
-        <section id="nedir">
-            <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v2h-2zm0 4h2v6h-2z"/></svg>
-                YDS Nedir?
-            </h2>
-            <p><b>Yabancı Dil Bilgisi Seviye Tespit Sınavı (YDS)</b>, Türkiye'de ÖSYM tarafından düzenlenen, kişilerin yabancı dil yetkinliğini akademik düzeyde ölçen merkezi bir sınavdır. Bu sınav, dil bilgisi, akademik kelime dağarcığı ve okuduğunu anlama becerilerini test eder.</p>
-        </section>
-
-        <section id="onem">
-            <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"/></svg>
-                YDS Puanının Stratejik Değeri
-            </h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>🎓 Akademik Kariyer</h3>
-                    <p>Yüksek lisans, doktora, doçentlik ve sanatta yeterlik gibi akademik kadrolara başvurularda temel bir ön koşuldur.</p>
-                </div>
-                <div class="card">
-                    <h3>🏢 Kamu Sektörü</h3>
-                    <p>Kamu personelinin dil tazminatı alması ve yurt dışı görevlendirmeleri için gereklidir.</p>
-                </div>
-                <div class="card">
-                    <h3>💼 KPSS A Grubu</h3>
-                    <p>Birçok KPSS-A puan türü, YDS puanının belirli bir ağırlıkla çarpılmasıyla hesaplanır ve sıralamayı doğrudan etkiler.</p>
-                </div>
-                <div class="card">
-                    <h3>🏫 Hazırlık Muafiyeti</h3>
-                    <p>Birçok üniversitede lisans ve lisansüstü programların İngilizce hazırlık sınıfından muaf olmak için kullanılır.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="format">
-            <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                Sınavın Anatomisi
-            </h2>
-            <div class="grid">
-                <div class="stat-box">
-                    <span class="number">80</span>
-                    <span class="label">Soru</span>
-                </div>
-                <div class="stat-box">
-                    <span class="number">180</span>
-                    <span class="label">Dakika</span>
-                </div>
-                <div class="stat-box">
-                    <span class="number">1.25</span>
-                    <span class="label">Puan / Soru</span>
-                </div>
-            </div>
-            <div class="question-grid">
-                <div>
-                    <h4>Bölüm 1: Kelime ve Dil Bilgisi</h4>
-                    <ul>
-                        <li><span class="type">Kelime Bilgisi</span> <span class="count">~6 Soru</span></li>
-                        <li><span class="type">Dil Bilgisi</span> <span class="count">~10 Soru</span></li>
-                        <li><span class="type">Cloze Test</span> <span class="count">10 Soru</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Bölüm 2: Okuduğunu Anlama</h4>
-                    <ul>
-                        <li><span class="type">Cümle Tamamlama</span> <span class="count">10 Soru</span></li>
-                        <li><span class="type">Çeviri</span> <span class="count">6 Soru</span></li>
-                        <li><span class="type">Okuma Parçaları</span> <span class="count">20 Soru</span></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Bölüm 3: Anlamsal Bütünlük</h4>
-                    <ul>
-                        <li><span class="type">Diyalog Tamamlama</span> <span class="count">5 Soru</span></li>
-                        <li><span class="type">Yakın Anlamlı Cümle</span> <span class="count">4 Soru</span></li>
-                        <li><span class="type">Paragraf Tamamlama</span> <span class="count">4 Soru</span></li>
-                        <li><span class="type">Bütünlüğü Bozan Cümle</span> <span class="count">5 Soru</span></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="muafiyet">
-            <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Üniversitelerin Hazırlık Muafiyet Şartları
-            </h2>
-            <p>Aşağıdaki tablo, araştırmanıza göre bazı üniversitelerin İngilizce hazırlık sınıfından muafiyet için talep ettikleri YDS/e-YDS puanlarını göstermektedir.</p>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>Üniversite</th>
-                        <th>Talep Edilen Minimum Puan</th>
-                        <th>Notlar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><b>Sabancı Üniversitesi</b></td>
-                        <td>90</td>
-                        <td>Yüksek puan talep eden üniversitelerdendir.</td>
-                    </tr>
-                    <tr>
-                        <td><b>Özyeğin Üniversitesi</b></td>
-                        <td>86</td>
-                        <td>Kendi sınavları (TRACE) yanı sıra YDS de kabul edilmektedir.</td>
-                    </tr>
-                    <tr>
-                        <td><b>Koç Üniversitesi</b></td>
-                        <td>80</td>
-                        <td>Genellikle kendi sınavı (KUEPE) esastır.</td>
-                    </tr>
-                    <tr>
-                        <td><b>İstanbul Üniversitesi</b></td>
-                        <td>70</td>
-                        <td>Fakülte ve bölüme göre değişiklik gösterebilir.</td>
-                    </tr>
-                    <tr>
-                        <td><b>Yeditepe Üniversitesi</b></td>
-                        <td>66</td>
-                        <td>Bölümün eğitim diline göre puan değişebilir.</td>
-                    </tr>
-                    <tr>
-                        <td><b>Hacettepe Üniversitesi</b></td>
-                        <td>65</td>
-                        <td>Tıp ve Diş Hekimliği gibi bölümlerde farklılık gösterebilir.</td>
-                    </tr>
-                    <tr>
-                        <td><b>Yıldız Teknik Üniversitesi</b></td>
-                        <td>60 - 69</td>
-                        <td>İsteğe bağlı ve zorunlu hazırlık programları için farklı barajlar uygulanabilir.</td>
-                    </tr>
-                    <tr>
-                        <td><b>9 Eylül Üniversitesi</b></td>
-                        <td>60</td>
-                        <td>Enstitü ve fakültelerin kendi web siteleri takip edilmelidir.</td>
-                    </tr>
-                    <tr style="background-color: #ffebee;">
-                        <td><b>ODTÜ / Boğaziçi / İTÜ / Marmara / Ankara</b></td>
-                        <td>Kabul Etmiyor</td>
-                        <td>Bu üniversiteler öncelikli olarak kendi yeterlilik sınavlarını (İYS, BUEPT vb.) esas almaktadır.</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="score-target-box">
-                <h4>Hedef Puana Göre Gerekli Doğru Sayısı</h4>
-                <p>YDS'de yanlışlar doğruları götürmez. Hedeflediğiniz puana ulaşmak için yapmanız gereken minimum doğru sayısı:</p>
-                <ul>
-                    <li><b>60 PUAN<br>48 DOĞRU</b></li>
-                    <li><b>65 PUAN<br>52 DOĞRU</b></li>
-                    <li><b>70 PUAN<br>56 DOĞRU</b></li>
-                    <li><b>80 PUAN<br>64 DOĞRU</b></li>
-                    <li><b>90 PUAN<br>72 DOĞRU</b></li>
-                </ul>
-            </div>
-
-            <p class="disclaimer"><strong>Önemli Uyarı:</strong> Bu liste yalnızca genel bilgilendirme amaçlıdır. En güncel ve kesin bilgi için lütfen başvurmayı düşündüğünüz üniversitenin Yabancı Diller Yüksekokulu veya Öğrenci İşleri Daire Başkanlığı'nın resmi web sitesini ziyaret ediniz.</p>
-        </section>
-        
-        <section id="takvim">
-             <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
-                2025 YDS Sınav Takvimi (Öngörülen)
-            </h2>
-             <table>
-                <thead>
-                    <tr>
-                        <th>Sınav Adı</th>
-                        <th>Sınav Tarihi</th>
-                        <th>Başvuru Tarihleri</th>
-                        <th>Sonuç Tarihi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><b>2025-YDS/1</b></td>
-                        <td>06.04.2025</td>
-                        <td>19.02 - 26.02.2025</td>
-                        <td>25.04.2025</td>
-                    </tr>
-                     <tr>
-                        <td><b>2025-YDS/2</b></td>
-                        <td>26.10.2025</td>
-                        <td>03.09 - 11.09.2025</td>
-                        <td>14.11.2025</td>
-                    </tr>
-                    <tr>
-                        <td><b>e-YDS (İngilizce)</b></td>
-                        <td>Genellikle her ay</td>
-                        <td>Sınavdan ~2-3 hafta önce</td>
-                        <td>Sınavla aynı gün</td>
-                    </tr>
-                </tbody>
-            </table>
-             <p class="disclaimer">Bu tarihler ÖSYM'nin geçmiş yıllardaki takvimine göre öngörülmüştür. Resmi tarihler için ÖSYM'nin duyurularını takip ediniz.</p>
-        </section>
-
+  <a class="skip" href="#main">İçeriğe geç</a>
+  <div class="topbar">
+    <div class="wrap top-inner">
+      <a class="brand" href="#ust" aria-label="YDS Rehberi ana sayfa">
+        <span class="brand-mark" aria-hidden="true">Y</span>
+        <span>YDS REHBERİ<small>SİNAN SEDEN</small></span>
+      </a>
+      <nav class="nav" aria-label="Bölümler">
+        <a href="#hedef">Hedef puan</a>
+        <a href="#soru-haritasi">Soru haritası</a>
+        <a href="#nerede-kullanilir">Kullanım alanları</a>
+        <a href="#muafiyet">Muafiyet</a>
+        <a href="#takvim">Takvim</a>
+      </nav>
+      <button class="print-link" type="button" onclick="window.print()">Yazdır / PDF</button>
     </div>
-    <footer>
-        <p>YDS Sınavı Bilgilendirme Rehberi</p>
-    </footer>
+  </div>
 
-    <!-- SIGNATURE -->
-    <div class="signature">
-        Tasarım: YDS/YDT Öğretmeni <strong>Sinan Seden</strong>
+  <header class="hero" id="ust">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow">YDS • Öğrenci rehberi</span>
+        <h1>Hedef puanını bil.<br><em>Yolunu netleştir.</em></h1>
+        <p>Sınavın yapısını keşfet, hedef puanına kaç doğru gerektiğini hesapla ve üniversite koşullarını tek yerde incele.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#hedef">Hedefimi hesapla <span aria-hidden="true">&nbsp;↗</span></a>
+          <a class="button button-secondary" href="#soru-haritasi">Sınavı tanı</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orb"><div class="orb-inner"><span>Hedefini seç</span><strong>70</strong><small>puan / 100</small></div></div>
+        <div class="float-pill one">✦ &nbsp;80 soruluk yol haritası</div>
+        <div class="float-pill two"><b>56</b> doğruyla 70 puan</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <div class="summary" aria-label="Sınavın kısa özeti">
+      <div class="summary-item"><span class="summary-icon" aria-hidden="true">▦</span><div><strong>80</strong><span>toplam soru</span></div></div>
+      <div class="summary-item"><span class="summary-icon" aria-hidden="true">◷</span><div><strong>180</strong><span>dakika</span></div></div>
+      <div class="summary-item"><span class="summary-icon" aria-hidden="true">✳</span><div><strong>1,25</strong><span>doğru başına puan</span></div></div>
     </div>
 
+    <section class="section" id="hedef" aria-labelledby="hedef-baslik">
+      <div class="section-head">
+        <div><div class="kicker">01 / Hedef planı</div><h2 id="hedef-baslik">Kaç doğruya ihtiyacın var?</h2><p>Hedef puanını seç. İstersen mevcut doğru sayını da girerek aradaki farkı gör.</p></div>
+        <span class="section-note">Hesaplama, İngilizce YDS için 80 soru × 1,25 puan üzerinden yapılır.</span>
+      </div>
+      <div class="target-grid">
+        <div class="panel target-controls">
+          <span class="step-label">1 — Hedef puanını seç</span>
+          <div class="choice-row" role="group" aria-label="Sık seçilen hedef puanlar">
+            <button class="choice" type="button" data-score="60" aria-pressed="false">60</button>
+            <button class="choice" type="button" data-score="65" aria-pressed="false">65</button>
+            <button class="choice" type="button" data-score="70" aria-pressed="true">70</button>
+            <button class="choice" type="button" data-score="80" aria-pressed="false">80</button>
+            <button class="choice" type="button" data-score="90" aria-pressed="false">90</button>
+          </div>
+          <label class="range-labels" for="targetRange"><span>Ya da kaydırarak belirle</span><strong><span id="rangeValue">70</span> puan</strong></label>
+          <input id="targetRange" type="range" min="0" max="100" step="5" value="70" aria-describedby="rangeHelp">
+          <div class="range-ends" id="rangeHelp"><span>0 puan</span><span>100 puan</span></div>
+          <hr class="divider">
+          <span class="step-label">2 — Durumunu gör (isteğe bağlı)</span>
+          <div class="current-row">
+            <label for="currentCorrect">Şu an yaklaşık kaç doğrun var?<small>Son denemendeki doğru sayısını yaz.</small></label>
+            <input class="number-input" id="currentCorrect" type="number" min="0" max="80" step="1" placeholder="Örn. 42" inputmode="numeric">
+          </div>
+          <p class="progress-note" id="progressNote" role="status">Mevcut doğru sayını girersen hedefe kalan fark burada görünecek.</p>
+        </div>
+        <div class="panel result" aria-live="polite" aria-atomic="true">
+          <span class="step-label">Hedefin için gereken en az</span>
+          <div class="dial" id="dial"><div class="dial-core"><strong id="requiredCorrect">56</strong><span>doğru / 80 soru</span></div></div>
+          <h3 id="resultHeading">70 puanlık hedef</h3>
+          <p>Yanlış cevaplar doğruları götürmez; her doğru 1,25 puandır.</p>
+          <div class="result-foot"><span>Hedef puan<br><b id="targetOutput">70</b></span><span>Gerekli doğru<br><b id="correctOutput">56 / 80</b></span></div>
+        </div>
+      </div>
+      <div class="info-strip">Bu hesaplama yaklaşık bir hedef planıdır. Başvurularda geçerli puan türü ve koşullar için ilgili kurumun güncel duyurusunu kontrol et.</div>
+    </section>
+
+    <section class="section" id="soru-haritasi" aria-labelledby="soru-baslik">
+      <div class="section-head">
+        <div><div class="kicker">02 / Sınavın yapısı</div><h2 id="soru-baslik">80 soruluk harita</h2><p>Soru türlerini bir bakışta gör. Aşağıdaki dağılım rehberdeki yaklaşık sayıların görsel özetidir.</p></div>
+      </div>
+      <div class="map-grid">
+        <div class="panel map-intro">
+          <h3>Üç beceri kümesi.<br>Tek sınav.</h3>
+          <p>Kelime ve dil bilgisinden metin yorumlamaya uzanan sorular birlikte değerlendirilir.</p>
+          <div class="stack" role="img" aria-label="Kelime ve dil bilgisi yaklaşık 26, okuma ve çeviri 36, anlamsal bütünlük 18 soru"><span></span><span></span><span></span></div>
+          <div class="legend">
+            <div><i style="background:#365bce"></i>Kelime ve dil bilgisi <b>~26</b></div>
+            <div><i style="background:#33aeb2"></i>Okuma ve çeviri <b>36</b></div>
+            <div><i style="background:#ffbf61"></i>Anlamsal bütünlük <b>18</b></div>
+          </div>
+        </div>
+        <div class="panel question-list">
+          <h3>Soru türleri</h3>
+          <div class="bar-row"><span>Kelime bilgisi</span><div class="bar-track"><span style="width:30%"></span></div><b>~6</b></div>
+          <div class="bar-row"><span>Dil bilgisi</span><div class="bar-track"><span style="width:50%"></span></div><b>~10</b></div>
+          <div class="bar-row"><span>Cloze test</span><div class="bar-track"><span style="width:50%"></span></div><b>10</b></div>
+          <div class="bar-row"><span>Cümle tamamlama</span><div class="bar-track"><span style="width:50%"></span></div><b>10</b></div>
+          <div class="bar-row"><span>Çeviri</span><div class="bar-track"><span style="width:30%"></span></div><b>6</b></div>
+          <div class="bar-row"><span>Okuma parçaları</span><div class="bar-track"><span style="width:100%"></span></div><b>20</b></div>
+          <div class="bar-row"><span>Diyalog tamamlama</span><div class="bar-track"><span style="width:25%"></span></div><b>5</b></div>
+          <div class="bar-row"><span>Yakın anlamlı cümle</span><div class="bar-track"><span style="width:20%"></span></div><b>4</b></div>
+          <div class="bar-row"><span>Paragraf tamamlama</span><div class="bar-track"><span style="width:20%"></span></div><b>4</b></div>
+          <div class="bar-row"><span>Bütünlüğü bozan cümle</span><div class="bar-track"><span style="width:25%"></span></div><b>5</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="nerede-kullanilir" aria-labelledby="kullanim-baslik">
+      <div class="section-head">
+        <div><div class="kicker">03 / Neden önemli?</div><h2 id="kullanim-baslik">YDS puanı nerede kullanılır?</h2><p>YDS, ÖSYM tarafından düzenlenen ve yabancı dil bilgisini ölçen merkezi bir sınavdır. Puanın kullanım koşulu başvurulan kuruma göre değişir.</p></div>
+      </div>
+      <div class="use-grid">
+        <article class="panel use-card"><span class="glyph" aria-hidden="true">✦</span><h3>Akademik kariyer</h3><p>Lisansüstü eğitim ve akademik başvurularda dil yeterliği koşullarından biri olabilir.</p></article>
+        <article class="panel use-card"><span class="glyph" aria-hidden="true">◇</span><h3>Kamu sektörü</h3><p>Dil tazminatı ve bazı yurt dışı görevlendirmeleri için kullanılabilir.</p></article>
+        <article class="panel use-card"><span class="glyph" aria-hidden="true">↗</span><h3>KPSS A grubu</h3><p>Bazı kadro ve puan türlerinde yabancı dil sonucu değerlendirmeye katılabilir.</p></article>
+        <article class="panel use-card"><span class="glyph" aria-hidden="true">▤</span><h3>Hazırlık muafiyeti</h3><p>Bazı üniversiteler, belirli programlarda kabul ettikleri puanla hazırlık muafiyeti sağlayabilir.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="muafiyet" aria-labelledby="muafiyet-baslik">
+      <div class="section-head">
+        <div><div class="kicker">04 / Üniversiteler</div><h2 id="muafiyet-baslik">Hazırlık muafiyeti araştırması</h2><p>Önceki rehberde yer alan üniversite ve puanları arayarak incele. Başvuru öncesinde güncel koşulları mutlaka üniversitenin kendi sayfasından doğrula.</p></div>
+      </div>
+      <div class="panel table-panel">
+        <div class="table-toolbar"><h3>Üniversite listesi</h3><input class="search" id="universitySearch" type="search" placeholder="Üniversite veya puan ara…" aria-label="Üniversite tablosunda ara"></div>
+        <div class="table-wrap">
+          <table id="universityTable">
+            <thead><tr><th scope="col">Üniversite</th><th scope="col">Önceki rehberdeki puan</th><th scope="col">Not</th></tr></thead>
+            <tbody>
+              <tr><td>Sabancı Üniversitesi</td><td>90</td><td>Yüksek puan talep eden üniversitelerden biri olarak listelenmiş.</td></tr>
+              <tr><td>Özyeğin Üniversitesi</td><td>86</td><td>TRACE sınavı ve YDS kabulüne ilişkin koşulları doğrula.</td></tr>
+              <tr><td>Koç Üniversitesi</td><td>80</td><td>KUEPE ve diğer muafiyet koşullarını doğrula.</td></tr>
+              <tr><td>İstanbul Üniversitesi</td><td>70</td><td>Fakülte ve bölüme göre koşullar değişebilir.</td></tr>
+              <tr><td>Yeditepe Üniversitesi</td><td>66</td><td>Programın eğitim diline göre koşulları doğrula.</td></tr>
+              <tr><td>Hacettepe Üniversitesi</td><td>65</td><td>Tıp ve Diş Hekimliği gibi programlar için ayrı koşulları doğrula.</td></tr>
+              <tr><td>Yıldız Teknik Üniversitesi</td><td>60–69</td><td>Zorunlu ve isteğe bağlı hazırlık koşullarını doğrula.</td></tr>
+              <tr><td>Dokuz Eylül Üniversitesi</td><td>60</td><td>Enstitü ve fakülte duyurularını ayrıca incele.</td></tr>
+              <tr><td>ODTÜ / Boğaziçi / İTÜ / Marmara / Ankara</td><td>Önceki listede kabul etmiyor</td><td>Her kurumun güncel yeterlik ve muafiyet koşullarını ayrı ayrı incele.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="empty" id="emptyState">Bu aramayla eşleşen üniversite bulunamadı.</p>
+      </div>
+      <div class="notice"><strong>Başvuru öncesi kontrol:</strong> Bu tablo önceki rehberin verilerini gösterir; güncel kabul ve puan koşulları doğrulanmış bir liste değildir. Kesin bilgi için ilgili üniversitenin Yabancı Diller Yüksekokulu veya Öğrenci İşleri duyurularına bak.</div>
+    </section>
+
+    <section class="section" id="takvim" aria-labelledby="takvim-baslik">
+      <div class="calendar-card">
+        <div><span class="eyebrow">05 / Güncel tarihler</span><h2 id="takvim-baslik">Sınav takvimini ÖSYM'den kontrol et.</h2><p>Eski tarihlerin yerine resmî takvime doğrudan bağlantı koyduk. Sınav, başvuru ve sonuç günleri değişebileceği için kararını güncel ÖSYM duyurularına göre ver.</p></div>
+        <a class="button button-primary" href="https://www.osym.gov.tr/Sayfa/SinavTakvimi/tr-TR" target="_blank" rel="noopener noreferrer">ÖSYM takvimini aç ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span><strong>YDS Rehberi</strong> · Sinan Seden</span><span>Bilgilendirme amaçlıdır. Resmî koşullar için ÖSYM ve ilgili kurum duyurularını inceleyin.</span></div></footer>
+
+  <script>
+    (function () {
+      const range = document.getElementById('targetRange');
+      const current = document.getElementById('currentCorrect');
+      const choices = Array.from(document.querySelectorAll('.choice'));
+      const search = document.getElementById('universitySearch');
+      const rows = Array.from(document.querySelectorAll('#universityTable tbody tr'));
+      const storageKey = 'yds-rehberi-hedef-v1';
+      let saved = {};
+      try { saved = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch (_) { saved = {}; }
+      if (Number.isInteger(saved.target) && saved.target >= 0 && saved.target <= 100 && saved.target % 5 === 0) range.value = saved.target;
+      if (Number.isInteger(saved.current) && saved.current >= 0 && saved.current <= 80) current.value = saved.current;
+
+      function update() {
+        const score = Number(range.value);
+        const needed = Math.ceil(score / 1.25);
+        document.getElementById('rangeValue').textContent = score;
+        document.getElementById('requiredCorrect').textContent = needed;
+        document.getElementById('targetOutput').textContent = score;
+        document.getElementById('correctOutput').textContent = needed + ' / 80';
+        document.getElementById('resultHeading').textContent = score + ' puanlık hedef';
+        document.getElementById('dial').style.setProperty('--fill', (needed / 80 * 360) + 'deg');
+        choices.forEach(function (button) { button.setAttribute('aria-pressed', String(Number(button.dataset.score) === score)); });
+        const note = document.getElementById('progressNote');
+        const raw = current.value.trim();
+        const count = Number(raw);
+        const valid = raw !== '' && Number.isInteger(count) && count >= 0 && count <= 80;
+        current.setCustomValidity(raw !== '' && !valid ? '0 ile 80 arasında tam sayı girin.' : '');
+        if (!valid) {
+          note.textContent = raw === '' ? 'Mevcut doğru sayını girersen hedefe kalan fark burada görünecek.' : '0 ile 80 arasında bir doğru sayısı gir.';
+        } else {
+          const gap = needed - count;
+          note.textContent = gap > 0 ? 'Hedefine ulaşmak için yaklaşık ' + gap + ' doğru daha gerekiyor.' : gap === 0 ? 'Hedefin için gereken doğru sayısına ulaştın!' : 'Hedefinin ' + Math.abs(gap) + ' doğru üzerindesin. Harika!';
+        }
+        try { localStorage.setItem(storageKey, JSON.stringify({ target: score, current: valid ? count : null })); } catch (_) {}
+      }
+
+      choices.forEach(function (button) {
+        button.addEventListener('click', function () { range.value = button.dataset.score; update(); });
+      });
+      range.addEventListener('input', update);
+      current.addEventListener('input', update);
+      search.addEventListener('input', function () {
+        const query = search.value.trim().toLocaleLowerCase('tr-TR');
+        let visible = 0;
+        rows.forEach(function (row) {
+          const match = row.textContent.toLocaleLowerCase('tr-TR').includes(query);
+          row.hidden = !match;
+          if (match) visible++;
+        });
+        document.getElementById('emptyState').style.display = visible ? 'none' : 'block';
+      });
+      update();
+    }());
+  </script>
 </body>
 </html>
