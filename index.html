@@ -41,6 +41,8 @@
     .nav { display: flex; align-items: center; gap: 23px; margin-left: auto; white-space: nowrap; }
     .nav a { text-decoration: none; color: #42516a; font-weight: 700; font-size: 13px; }
     .nav a:hover, .nav a[aria-current="true"] { color: var(--blue); }
+    .nav .cards-link { padding: 8px 12px; border: 1px solid #ccd6f6; border-radius: 10px; background: #edf1ff; color: var(--blue-dark); font-weight: 800; }
+    .nav .cards-link:hover { background: #e0e7ff; }
     .print-link { border: 1px solid #d6def0; padding: 9px 15px; border-radius: 10px; background: #f5f7ff; color: var(--blue-dark); font-weight: 800; font-size: 12px; white-space: nowrap; }
     .print-link:hover { background: #e8edff; }
     .hero { background: var(--ink); color: var(--white); position: relative; overflow: hidden; }
@@ -161,10 +163,16 @@
     .calendar-card h2 { margin: 8px 0; }
     .calendar-card p { max-width: 620px; margin: 0; color: #c4d3e6; font-size: 14px; }
     .calendar-card .button { white-space: nowrap; position: relative; z-index: 1; }
+    .cards-bridge { display: flex; align-items: center; gap: 24px; padding: clamp(25px, 4vw, 38px); border: 1px solid #d8dff5; border-radius: 22px; background: linear-gradient(115deg, #eaf1ff, #f5efff); box-shadow: var(--shadow); }
+    .bridge-mark { display: grid; place-items: center; flex: 0 0 62px; height: 70px; background: var(--blue); color: white; border-radius: 15px; font-size: 32px; transform: rotate(-7deg); box-shadow: 7px 7px 0 #cbc8ef; }
+    .bridge-copy { flex: 1; }
+    .cards-bridge h2 { font-size: clamp(24px, 3vw, 31px); margin: 5px 0 9px; }
+    .cards-bridge p { color: var(--muted); font-size: 14px; margin: 0; max-width: 600px; }
+    .cards-bridge .button { white-space: nowrap; }
     footer { padding: 35px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
     .footer-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
     footer strong { color: var(--ink); }
-    @media (max-width: 950px) {
+    @media (max-width: 1100px) {
       .top-inner { flex-wrap: wrap; gap: 0; padding-top: 10px; }
       .nav { order: 3; overflow-x: auto; width: 100%; margin: 0; gap: 20px; padding: 10px 0 12px; scrollbar-width: none; }
       .nav::-webkit-scrollbar { display: none; }
@@ -173,6 +181,9 @@
       .use-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 700px) {
+      .cards-bridge { display: block; }
+      .bridge-mark { display: none; }
+      .cards-bridge .button { width: 100%; margin-top: 20px; }
       html { scroll-padding-top: 113px; }
       .wrap { width: min(100% - 28px, 1160px); }
       .top-inner { min-height: auto; }
@@ -207,6 +218,7 @@
       *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
     @media print {
+      .cards-bridge { display: none !important; }
       :root { color-scheme: light; }
       body { background: white; font-size: 11pt; }
       .topbar, .hero-actions, .choice-row, .range-labels, input, .current-row, .progress-note, .search, .button, .float-pill { display: none !important; }
@@ -250,6 +262,7 @@
         <span>YDS REHBERİ<small>SİNAN SEDEN</small></span>
       </a>
       <nav class="nav" aria-label="Bölümler">
+        <a class="cards-link" href="https://sinanseden-eng.github.io/yds-soru-kaliplari/">Soru kartları →</a>
         <a href="#hedef">Hedef puan</a>
         <a href="#soru-haritasi">Soru haritası</a>
         <a href="#nerede-kullanilir">Kullanım alanları</a>
@@ -397,6 +410,13 @@
       <div class="calendar-card">
         <div><span class="eyebrow">05 / Güncel tarihler</span><h2 id="takvim-baslik">Sınav takvimini ÖSYM'den kontrol et.</h2><p>Eski tarihlerin yerine resmî takvime doğrudan bağlantı koyduk. Sınav, başvuru ve sonuç günleri değişebileceği için kararını güncel ÖSYM duyurularına göre ver.</p></div>
         <a class="button button-primary" href="https://www.osym.gov.tr/Sayfa/SinavTakvimi/tr-TR" target="_blank" rel="noopener noreferrer">ÖSYM takvimini aç ↗</a>
+      </div>
+    </section>
+    <section class="section" id="soru-kartlari" aria-labelledby="kartlar-baslik">
+      <div class="cards-bridge">
+        <span class="bridge-mark" aria-hidden="true">▦</span>
+        <div class="bridge-copy"><div class="kicker">06 / Şimdi uygulama zamanı</div><h2 id="kartlar-baslik">Şimdi sıra soru kartlarında.</h2><p>Her soru tipinden bir örnekle devam edin. Ön yüzde soruyu tartışın; kartı çevirip çözüm tekniklerini keşfedin.</p></div>
+        <a class="button button-primary" href="https://sinanseden-eng.github.io/yds-soru-kaliplari/">Soru kartlarına geç →</a>
       </div>
     </section>
   </main>
