@@ -158,11 +158,14 @@
     .empty { display: none; text-align: center; padding: 25px; color: var(--muted); font-size: 13px; }
     .notice { margin-top: 17px; padding: 18px 21px; border-radius: 14px; border: 1px solid #f4d8a4; background: #fff8eb; color: #674d27; font-size: 13px; }
     .notice strong { color: #463213; }
-    .calendar-card { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; background: var(--ink); color: white; border-radius: 22px; padding: clamp(25px, 4vw, 43px); position: relative; overflow: hidden; }
-    .calendar-card::after { content: "→"; position: absolute; font: 800 260px/1 Manrope, sans-serif; opacity: .04; right: 17%; top: -65px; }
+    .calendar-card { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center; background: var(--ink); color: white; border-radius: 22px; padding: clamp(25px, 4vw, 43px); position: relative; overflow: hidden; }
     .calendar-card h2 { margin: 8px 0; }
     .calendar-card p { max-width: 620px; margin: 0; color: #c4d3e6; font-size: 14px; }
-    .calendar-card .button { white-space: nowrap; position: relative; z-index: 1; }
+    .calendar-card h2 { color: var(--gold); }
+    .exam-figure { margin: 0; min-width: 0; }
+    .exam-image-scroll { overflow-x: auto; border: 1px solid #d9e2ef; border-radius: 12px; background: #fff; }
+    .exam-image-scroll img { display: block; width: 100%; min-width: 950px; height: auto; }
+    .exam-figure figcaption { margin-top: 10px; color: #c4d3e6; font-size: 12px; }
     .cards-bridge { display: flex; align-items: center; gap: 24px; padding: clamp(25px, 4vw, 38px); border: 1px solid #d8dff5; border-radius: 22px; background: linear-gradient(115deg, #eaf1ff, #f5efff); box-shadow: var(--shadow); }
     .bridge-mark { display: grid; place-items: center; flex: 0 0 62px; height: 70px; background: var(--blue); color: white; border-radius: 15px; font-size: 32px; transform: rotate(-7deg); box-shadow: 7px 7px 0 #cbc8ef; }
     .bridge-copy { flex: 1; }
@@ -247,7 +250,10 @@
       table { min-width: 0; }
       th, td { padding: 7px; }
       .calendar-card { background: #eaf0ff; color: #10243d; }
-      .calendar-card p { color: #38506e; }
+      .calendar-card p, .exam-figure figcaption { color: #38506e; }
+      .calendar-card h2 { color: #10243d; }
+      .exam-image-scroll { overflow: visible; }
+      .exam-image-scroll img { min-width: 0; }
       .wrap { width: 100%; }
       footer { padding-bottom: 0; }
     }
@@ -267,7 +273,7 @@
         <a href="#soru-haritasi">Soru haritası</a>
         <a href="#nerede-kullanilir">Kullanım alanları</a>
         <a href="#muafiyet">Muafiyet</a>
-        <a href="#takvim">Takvim</a>
+        <a href="#takvim">Sınav tarihi</a>
       </nav>
       <button class="print-link" type="button" onclick="window.print()">Yazdır / PDF</button>
     </div>
@@ -408,8 +414,11 @@
 
     <section class="section" id="takvim" aria-labelledby="takvim-baslik">
       <div class="calendar-card">
-        <div><span class="eyebrow">05 / Güncel tarihler</span><h2 id="takvim-baslik">Sınav takvimini ÖSYM'den kontrol et.</h2><p>Eski tarihlerin yerine resmî takvime doğrudan bağlantı koyduk. Sınav, başvuru ve sonuç günleri değişebileceği için kararını güncel ÖSYM duyurularına göre ver.</p></div>
-        <a class="button button-primary" href="https://www.osym.gov.tr/Sayfa/SinavTakvimi/tr-TR" target="_blank" rel="noopener noreferrer">ÖSYM takvimini aç ↗</a>
+        <div><span class="eyebrow">05 / 2026 YDS/2</span><h2 id="takvim-baslik">Sınav tarihiniz: 22 Kasım 2026</h2><p>Başvuru: 30 Eylül – 8 Ekim 2026 · Geç başvuru: 14 Ekim 2026 · Sonuç: 10 Aralık 2026</p></div>
+        <figure class="exam-figure">
+          <div class="exam-image-scroll" role="region" aria-label="2026 YDS/2 tarihleri" tabindex="0"><img src="assets/yds-2026-exam-dates.png" width="1671" height="310" alt="2026 YDS/2 tarih tablosu. Başvuru: 30.09.2026–08.10.2026. Geç başvuru: 14.10.2026, saat 23.59'a kadar. Sınav: 22.11.2026. Sonuç: 10.12.2026." loading="lazy"></div>
+          <figcaption>2026 YDS/2 başvuru, sınav ve sonuç tarihleri. Küçük ekranda tablonun tamamı için yana kaydırın.</figcaption>
+        </figure>
       </div>
     </section>
     <section class="section" id="soru-kartlari" aria-labelledby="kartlar-baslik">
